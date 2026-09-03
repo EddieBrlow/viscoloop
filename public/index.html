@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ViscoLoop</title>
+  <meta name="description" content="ViscoLoop — your company's one-stop shop for documents, tools, and policy answers." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#4F46E5" />
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/icons/icon.svg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="ViscoLoop" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <img src="/icons/icon.svg" alt="" />
+      <h1>ViscoLoop</h1>
+      <span class="tagline">Everything staff need, in one place</span>
+    </header>
+
+    <nav class="tabs" id="tabs">
+      <button data-view="home" class="active">🏠 Home</button>
+      <button data-view="documents">📄 Documents</button>
+      <button data-view="tools">🧰 Company Tools</button>
+      <button data-view="chat">💬 Ask ViscoLoop</button>
+    </nav>
+
+    <main>
+      <div class="install-banner" id="install-banner">
+        <span>Install ViscoLoop on this device for quick, app-like access.</span>
+        <button class="btn btn-primary" id="install-btn">Install</button>
+      </div>
+
+      <!-- HOME -->
+      <section class="view active" id="view-home">
+        <h2 class="section-title">Welcome 👋</h2>
+        <div class="grid">
+          <div class="tile">
+            <div class="icon">📄</div>
+            <div class="title">Documents</div>
+            <div class="desc">Policies, handbooks, and shared files — linked or uploaded.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="documents">Browse</button>
+          </div>
+          <div class="tile">
+            <div class="icon">🧰</div>
+            <div class="title">Company Tools</div>
+            <div class="desc">Quick links to every third-party platform your team uses.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="tools">Browse</button>
+          </div>
+          <div class="tile">
+            <div class="icon">💬</div>
+            <div class="title">Ask ViscoLoop</div>
+            <div class="desc">Ask a policy or document question, get a grounded answer.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="chat">Ask now</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section class="view" id="view-documents">
+        <div class="row-between">
+          <h2 class="section-title">Documents</h2>
+          <button class="btn btn-primary" id="add-document-btn">+ Add document</button>
+        </div>
+        <p class="hint">💡 Files live in our shared OneDrive. In OneDrive: right-click a file or folder → <strong>Share</strong> → <strong>Copy link</strong>, then paste it below.</p>
+        <div class="chips" id="document-categories"></div>
+        <div class="grid" id="document-grid" style="margin-top:14px"></div>
+      </section>
+
+      <!-- TOOLS -->
+      <section class="view" id="view-tools">
+        <div class="row-between">
+          <h2 class="section-title">Company Tools</h2>
+          <button class="btn btn-primary" id="add-tool-btn">+ Add tool</button>
+        </div>
+        <div class="grid" id="tools-grid"></div>
+      </section>
+
+      <!-- CHAT -->
+      <section class="view" id="view-chat">
+        <h2 class="section-title">Ask ViscoLoop</h2>
+        <div class="chat-window">
+          <div class="chat-messages" id="chat-messages">
+            <div class="msg bot">Hi! Ask me about a company policy or where to find a document — I'll answer from what's in the Documents &amp; knowledge base.</div>
+          </div>
+          <form class="chat-input" id="chat-form">
+            <input type="text" id="chat-input" placeholder="e.g. How many remote days am I allowed?" autocomplete="off" />
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Add Document modal -->
+  <div class="modal-backdrop" id="document-modal" style="display:none">
+    <div class="modal">
+      <h3>Add a document</h3>
+      <form id="document-form">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" required />
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input type="text" name="category" placeholder="e.g. HR, IT, Marketing" />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label>Type</label>
+          <select name="type" id="document-type">
+            <option value="link">OneDrive share link (recommended)</option>
+            <option value="file">Upload a file directly instead</option>
+          </select>
+        </div>
+        <div class="field" id="document-url-field">
+          <label>OneDrive link</label>
+          <input type="url" name="url" placeholder="https://onedrive.live.com/..." />
+        </div>
+        <div class="field" id="document-file-field" style="display:none">
+          <label>File</label>
+          <input type="file" name="file" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Tool modal -->
+  <div class="modal-backdrop" id="tool-modal" style="display:none">
+    <div class="modal">
+      <h3>Add a company tool</h3>
+      <form id="tool-form">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="field">
+          <label>URL</label>
+          <input type="url" name="url" placeholder="https://..." required />
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input type="text" name="category" placeholder="e.g. Productivity, HR" />
+        </div>
+        <div class="field">
+          <label>Icon (single emoji)</label>
+          <input type="text" name="icon" placeholder="🔗" maxlength="2" />
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description" rows="2"></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/chat.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "seed-tool-1",
+    "name": "Google Workspace",
+    "url": "https://workspace.google.com/",
+    "description": "Email, Docs, Sheets, and Drive.",
+    "category": "Productivity",
+    "icon": "📧",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-tool-2",
+    "name": "Slack",
+    "url": "https://slack.com/",
+    "description": "Team chat and channels.",
+    "category": "Communication",
+    "icon": "💬",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-tool-3",
+    "name": "HR Portal",
+    "url": "https://www.bamboohr.com/",
+    "description": "Time off requests, payslips, and personal details.",
+    "category": "HR",
+    "icon": "🧑‍💼",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  }
+]

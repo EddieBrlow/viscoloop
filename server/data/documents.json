@@ -1,0 +1,29 @@
+[
+  {
+    "id": "seed-1",
+    "title": "Employee Handbook",
+    "category": "HR",
+    "description": "Company-wide policies, code of conduct, and benefits overview. (Example OneDrive link — replace with your real share link.)",
+    "type": "link",
+    "url": "https://onedrive.live.com/",
+    "updatedAt": "2026-01-15T09:00:00.000Z"
+  },
+  {
+    "id": "seed-2",
+    "title": "Brand Guidelines",
+    "category": "Marketing",
+    "description": "Logos, colors, and voice/tone guidance for anything customer-facing. (Example OneDrive link — replace with your real share link.)",
+    "type": "link",
+    "url": "https://onedrive.live.com/",
+    "updatedAt": "2026-01-20T09:00:00.000Z"
+  },
+  {
+    "id": "seed-3",
+    "title": "IT Security Policy",
+    "category": "IT",
+    "description": "Password, device, and data-handling requirements for all staff. (Example OneDrive link — replace with your real share link.)",
+    "type": "link",
+    "url": "https://onedrive.live.com/",
+    "updatedAt": "2026-02-01T09:00:00.000Z"
+  }
+]
