@@ -42,6 +42,33 @@ const api = {
     if (!res.ok && res.status !== 404) throw new Error("Failed to delete tool");
   },
 
+  async getSuggestions() {
+    const res = await fetch("/api/suggestions");
+    return res.json();
+  },
+  async addSuggestion(payload) {
+    const res = await fetch("/api/suggestions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error((await res.json()).error || "Failed to submit suggestion");
+    return res.json();
+  },
+  async setSuggestionStatus(id, status) {
+    const res = await fetch(`/api/suggestions/${id}/status`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error || "Failed to update status");
+    return res.json();
+  },
+  async deleteSuggestion(id) {
+    const res = await fetch(`/api/suggestions/${id}`, { method: "DELETE" });
+    if (!res.ok && res.status !== 404) throw new Error("Failed to delete suggestion");
+  },
+
   async sendChatMessage(message, history) {
     const res = await fetch("/api/chat", {
       method: "POST",

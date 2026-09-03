@@ -26,6 +26,7 @@
       <button data-view="home" class="active">🏠 Home</button>
       <button data-view="documents">📄 Documents</button>
       <button data-view="tools">🧰 Company Tools</button>
+      <button data-view="suggestions">💡 Suggestions</button>
       <button data-view="chat">💬 Ask ViscoLoop</button>
     </nav>
 
@@ -50,6 +51,12 @@
             <div class="title">Company Tools</div>
             <div class="desc">Quick links to every third-party platform your team uses.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="tools">Browse</button>
+          </div>
+          <div class="tile">
+            <div class="icon">💡</div>
+            <div class="title">Suggestions</div>
+            <div class="desc">Submit an idea and track it through review to implementation.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="suggestions">Browse</button>
           </div>
           <div class="tile">
             <div class="icon">💬</div>
@@ -78,6 +85,16 @@
           <button class="btn btn-primary" id="add-tool-btn">+ Add tool</button>
         </div>
         <div class="grid" id="tools-grid"></div>
+      </section>
+
+      <!-- SUGGESTIONS -->
+      <section class="view" id="view-suggestions">
+        <div class="row-between">
+          <h2 class="section-title">Suggestions</h2>
+          <button class="btn btn-primary" id="add-suggestion-btn">+ Submit suggestion</button>
+        </div>
+        <div class="chips" id="suggestion-statuses"></div>
+        <div class="grid" id="suggestions-grid" style="margin-top:14px"></div>
       </section>
 
       <!-- CHAT -->
@@ -164,6 +181,35 @@
         <div class="modal-actions">
           <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
           <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Submit Suggestion modal -->
+  <div class="modal-backdrop" id="suggestion-modal" style="display:none">
+    <div class="modal">
+      <h3>Submit a suggestion</h3>
+      <form id="suggestion-form">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" name="title" required />
+        </div>
+        <div class="field">
+          <label>Details</label>
+          <textarea name="description" rows="3" placeholder="What's the idea, and why would it help?"></textarea>
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input type="text" name="category" placeholder="e.g. Product, Process, IT" />
+        </div>
+        <div class="field">
+          <label>Your name (optional)</label>
+          <input type="text" name="submittedBy" placeholder="Leave blank to submit anonymously" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>

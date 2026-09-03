@@ -169,6 +169,105 @@ document.getElementById("tool-form").addEventListener("submit", async (e) => {
   }
 });
 
+// --- Suggestions -------------------------------------------------------
+const SUGGESTION_STATUSES = ["Submitted", "Under Review", "Planned", "In Progress", "Implemented", "Declined"];
+let suggestionsCache = [];
+let activeSuggestionStatus = null;
+
+function renderSuggestionStatusChips() {
+  const el = document.getElementById("suggestion-statuses");
+  el.innerHTML = "";
+  ["All", ...SUGGESTION_STATUSES].forEach((status) => {
+    const chip = document.createElement("button");
+    chip.className = "chip" + ((activeSuggestionStatus === status || (status === "All" && !activeSuggestionStatus)) ? " active" : "");
+    chip.textContent = status;
+    chip.addEventListener("click", () => {
+      activeSuggestionStatus = status === "All" ? null : status;
+      renderSuggestionStatusChips();
+      renderSuggestions();
+    });
+    el.appendChild(chip);
+  });
+}
+
+function renderSuggestions() {
+  const grid = document.getElementById("suggestions-grid");
+  const items = activeSuggestionStatus
+    ? suggestionsCache.filter((s) => s.status === activeSuggestionStatus)
+    : suggestionsCache;
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty-state">No suggestions here yet. Be the first to submit one!</div>`;
+    return;
+  }
+
+  grid.innerHTML = "";
+  items.forEach((sugg) => {
+    const tile = document.createElement("div");
+    tile.className = "tile";
+
+    const statusOptions = SUGGESTION_STATUSES.map(
+      (s) => `<option value="${s}" ${s === sugg.status ? "selected" : ""}>${s}</option>`
+    ).join("");
+
+    tile.innerHTML = `
+      <span class="status-pill status-${slugifyStatus(sugg.status)}">${escapeHtml(sugg.status)}</span>
+      <div class="title">${escapeHtml(sugg.title)}</div>
+      <div class="desc">${escapeHtml(sugg.description || "")}</div>
+      <div class="meta">${escapeHtml(sugg.category)} · submitted by ${escapeHtml(sugg.submittedBy)}</div>
+      <div class="field" style="margin-top:6px">
+        <label>Move to</label>
+        <select data-status-select>${statusOptions}</select>
+      </div>
+      <div class="tile-actions">
+        <button class="btn btn-danger" data-delete>Delete</button>
+      </div>
+    `;
+    tile.querySelector("[data-status-select]").addEventListener("change", async (e) => {
+      await api.setSuggestionStatus(sugg.id, e.target.value);
+      await loadSuggestions();
+    });
+    tile.querySelector("[data-delete]").addEventListener("click", async () => {
+      if (!confirm(`Remove "${sugg.title}"?`)) return;
+      await api.deleteSuggestion(sugg.id);
+      await loadSuggestions();
+    });
+    grid.appendChild(tile);
+  });
+}
+
+function slugifyStatus(status) {
+  return status.toLowerCase().replace(/\s+/g, "-");
+}
+
+async function loadSuggestions() {
+  suggestionsCache = await api.getSuggestions();
+  renderSuggestions();
+}
+
+document.getElementById("add-suggestion-btn").addEventListener("click", () => openModal("suggestion-modal"));
+
+document.getElementById("suggestion-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  try {
+    await api.addSuggestion({
+      title: data.get("title"),
+      description: data.get("description"),
+      category: data.get("category"),
+      submittedBy: data.get("submittedBy"),
+    });
+    form.reset();
+    closeModal("suggestion-modal");
+    await loadSuggestions();
+  } catch (err) {
+    alert(err.message);
+  }
+});
+
+renderSuggestionStatusChips();
+
 // --- Utilities -------------------------------------------------------
 function escapeHtml(str) {
   const div = document.createElement("div");
@@ -198,3 +297,4 @@ if ("serviceWorker" in navigator) {
 initChat();
 loadDocuments();
 loadTools();
+loadSuggestions();

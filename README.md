@@ -1,7 +1,8 @@
 # ViscoLoop
 
 Your company's one-stop shop: company documents, quick links to the third-party tools your
-team uses, and an AI assistant employees can ask policy/document questions.
+team uses, a suggestion box with a review/implementation pipeline, and an AI assistant employees
+can ask policy/document questions.
 
 Built as an **installable web app (PWA)** — one codebase, no app stores. Employees open the
 URL once on their phone, tablet, or desktop and "install" it for an app-like icon and full-screen
@@ -11,14 +12,15 @@ experience. A single small Node server serves the app and its data (documents, t
 
 ```
 public/            The app itself (plain HTML/CSS/JS — no build step)
-  index.html        Home / Documents / Company Tools / Ask ViscoLoop tabs
+  index.html        Home / Documents / Company Tools / Suggestions / Ask ViscoLoop tabs
   manifest.webmanifest, sw.js   PWA install + offline shell caching
 server/            Backend: serves public/ and provides the APIs
-  src/routes/documents.js   Document hub (links + file uploads)
-  src/routes/tools.js       Company Tools tab (add/edit/delete links)
-  src/routes/chat.js        The AI assistant (calls Claude)
-  knowledge/                 Policy text files the bot answers from
-  data/                      documents.json / tools.json (simple JSON storage for v1)
+  src/routes/documents.js    Document hub (links + file uploads)
+  src/routes/tools.js        Company Tools tab (add/edit/delete links)
+  src/routes/suggestions.js  Suggestions tab (submit + move through the review pipeline)
+  src/routes/chat.js         The AI assistant (calls Claude)
+  knowledge/                  Policy text files the bot answers from
+  data/                       documents.json / tools.json / suggestions.json (simple JSON storage for v1)
 ```
 
 ## Running it — no local Node.js needed
@@ -48,6 +50,12 @@ http://localhost:3000.)*
   reliably persist on the free hosting tier.)
 - **Company Tools tab**: use "+ Add tool" for every third-party platform your team uses (Slack,
   HR system, CRM, etc). Seeded with 3 placeholder examples.
+- **Suggestions tab**: anyone can submit an idea ("+ Submit suggestion") with an optional name.
+  Move a suggestion through the pipeline with the "Move to" dropdown on its card — every move is
+  timestamped in that suggestion's `history` array (visible via `GET /api/suggestions`), so you
+  can see when it went from Submitted → Under Review → Planned → In Progress → Implemented (or
+  Declined). There's no separate "admin" role yet — see Known limitations below. Seeded with 2
+  placeholder examples — delete those.
 - **Ask ViscoLoop bot**: replace the placeholder files in `server/knowledge/` with your real
   policy documents (plain `.md` or `.txt`). The bot only answers from what's in that folder —
   add as many files as you like, one policy per file works well.
@@ -56,8 +64,11 @@ http://localhost:3000.)*
 
 - **No login/authentication yet** — and once deployed, the URL is reachable by anyone on the
   internet who has it, not just people on your network. Anyone with the link can view, add, and
-  delete documents/tools. Fine for a quiet pilot with a handful of trusted people; add auth
-  (e.g. SSO via Microsoft Entra/Google Workspace) before sharing the link more widely.
+  delete documents/tools, and can move any suggestion through the review pipeline (there's no
+  separate reviewer/admin role — that's the main thing worth adding before wider rollout, so
+  status changes reflect an actual decision rather than anyone clicking a dropdown). Fine for a
+  quiet pilot with a handful of trusted people; add auth (e.g. SSO via Microsoft Entra/Google
+  Workspace) before sharing the link more widely.
 - **App icon is a placeholder SVG** (`public/icons/icon.svg`) — swap in your real logo as PNG
   files (192×192 and 512×512 at minimum) for the best install experience on iOS.
 - **Document/tool data lives in JSON files** on the server (`server/data/`), and on the free

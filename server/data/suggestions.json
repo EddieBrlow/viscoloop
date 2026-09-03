@@ -1,0 +1,29 @@
+[
+  {
+    "id": "seed-sugg-1",
+    "title": "Add a dark mode toggle",
+    "description": "ViscoLoop already follows system dark mode, but an explicit toggle would help people who want it regardless of their OS setting.",
+    "category": "Product",
+    "submittedBy": "Example — delete me",
+    "status": "Under Review",
+    "history": [
+      { "status": "Submitted", "at": "2026-08-20T09:00:00.000Z" },
+      { "status": "Under Review", "at": "2026-08-22T14:30:00.000Z" }
+    ],
+    "createdAt": "2026-08-20T09:00:00.000Z",
+    "updatedAt": "2026-08-22T14:30:00.000Z"
+  },
+  {
+    "id": "seed-sugg-2",
+    "title": "Weekly digest of new documents",
+    "description": "A short email or Slack post summarizing what was added to Documents in the last week.",
+    "category": "Process",
+    "submittedBy": "Example — delete me",
+    "status": "Submitted",
+    "history": [
+      { "status": "Submitted", "at": "2026-08-28T11:00:00.000Z" }
+    ],
+    "createdAt": "2026-08-28T11:00:00.000Z",
+    "updatedAt": "2026-08-28T11:00:00.000Z"
+  }
+]

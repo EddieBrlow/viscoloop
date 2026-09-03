@@ -7,6 +7,7 @@ import { dirname, join } from "node:path";
 import { documentsRouter } from "./routes/documents.js";
 import { toolsRouter } from "./routes/tools.js";
 import { chatRouter } from "./routes/chat.js";
+import { suggestionsRouter } from "./routes/suggestions.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = join(__dirname, "..", "..", "public");
@@ -23,6 +24,7 @@ app.use("/files", express.static(UPLOADS_DIR));
 app.use("/api/documents", documentsRouter);
 app.use("/api/tools", toolsRouter);
 app.use("/api/chat", chatRouter);
+app.use("/api/suggestions", suggestionsRouter);
 
 // The PWA itself
 app.use(express.static(PUBLIC_DIR));
