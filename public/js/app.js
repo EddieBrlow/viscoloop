@@ -55,7 +55,7 @@ function renderDocuments() {
     const tile = document.createElement("div");
     tile.className = "tile";
     tile.innerHTML = `
-      <div class="icon">${doc.type === "file" ? "📎" : "🔗"}</div>
+      <div class="tile-icon">${doc.type === "file" ? "📎" : "🔗"}</div>
       <div class="title">${escapeHtml(doc.title)}</div>
       <div class="desc">${escapeHtml(doc.description || "")}</div>
       <div class="meta">${escapeHtml(doc.category)}</div>
@@ -128,7 +128,7 @@ async function loadTools() {
     const tile = document.createElement("div");
     tile.className = "tile";
     tile.innerHTML = `
-      <div class="icon">${escapeHtml(tool.icon || "🔗")}</div>
+      <div class="tile-icon">${escapeHtml(tool.icon || "🔗")}</div>
       <div class="title">${escapeHtml(tool.name)}</div>
       <div class="desc">${escapeHtml(tool.description || "")}</div>
       <div class="meta">${escapeHtml(tool.category)}</div>
@@ -240,8 +240,36 @@ function slugifyStatus(status) {
   return status.toLowerCase().replace(/\s+/g, "-");
 }
 
+function renderSuggestionStats() {
+  const total = suggestionsCache.length;
+  const implemented = suggestionsCache.filter((s) => s.status === "Implemented").length;
+  const inProgress = suggestionsCache.filter((s) => s.status === "In Progress").length;
+  const open = suggestionsCache.filter((s) => !["Implemented", "Declined"].includes(s.status)).length;
+
+  const stats = [
+    { value: total, label: "Total ideas" },
+    { value: inProgress, label: "In progress" },
+    { value: implemented, label: "Implemented" },
+    { value: open, label: "Open" },
+  ];
+
+  const el = document.getElementById("suggestion-stats");
+  el.innerHTML = stats
+    .map((s) => `<div class="stat-card"><div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div></div>`)
+    .join("");
+
+  const openCount = document.getElementById("home-suggestions-count");
+  if (open > 0) {
+    openCount.textContent = open;
+    openCount.hidden = false;
+  } else {
+    openCount.hidden = true;
+  }
+}
+
 async function loadSuggestions() {
   suggestionsCache = await api.getSuggestions();
+  renderSuggestionStats();
   renderSuggestions();
 }
 

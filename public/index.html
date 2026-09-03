@@ -6,12 +6,15 @@
   <title>ViscoLoop</title>
   <meta name="description" content="ViscoLoop — your company's one-stop shop for documents, tools, and policy answers." />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <meta name="theme-color" content="#F97316" />
+  <meta name="theme-color" content="#FA792E" />
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/icons/icon.svg" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="ViscoLoop" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
@@ -38,29 +41,33 @@
 
       <!-- HOME -->
       <section class="view active" id="view-home">
-        <h2 class="section-title">Welcome 👋</h2>
-        <blockquote class="motto">Teamwork shapes the vision, innovation drives the design, action builds the reality.</blockquote>
+        <div class="hero">
+          <span class="hero-badge">🧭 Visco company portal</span>
+          <p class="motto">Teamwork shapes the vision, innovation drives the design, action builds the reality.</p>
+          <p class="hero-sub">Everything the team needs, in one place — find a document, open a tool, or share an idea for how we work better.</p>
+        </div>
         <div class="grid">
           <div class="tile">
-            <div class="icon">📄</div>
+            <div class="tile-icon">📄</div>
             <div class="title">Documents</div>
             <div class="desc">Policies, handbooks, and shared files — linked or uploaded.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="documents">Browse</button>
           </div>
           <div class="tile">
-            <div class="icon">🧰</div>
+            <div class="tile-icon">🧰</div>
             <div class="title">Company Tools</div>
             <div class="desc">Quick links to every third-party platform your team uses.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="tools">Browse</button>
           </div>
-          <div class="tile">
-            <div class="icon">💡</div>
+          <div class="tile featured" id="home-suggestions-tile">
+            <span class="tile-badge" id="home-suggestions-count" hidden></span>
+            <div class="tile-icon">💡</div>
             <div class="title">Suggestions</div>
             <div class="desc">Submit an idea and track it through review to implementation.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="suggestions">Browse</button>
           </div>
           <div class="tile">
-            <div class="icon">💬</div>
+            <div class="tile-icon">💬</div>
             <div class="title">Ask ViscoLoop</div>
             <div class="desc">Ask a policy or document question, get a grounded answer.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="chat">Ask now</button>
@@ -94,6 +101,7 @@
           <h2 class="section-title">Suggestions</h2>
           <button class="btn btn-primary" id="add-suggestion-btn">+ Submit suggestion</button>
         </div>
+        <div class="stats-row" id="suggestion-stats"></div>
         <div class="chips" id="suggestion-statuses"></div>
         <div class="grid" id="suggestions-grid" style="margin-top:14px"></div>
       </section>
