@@ -69,8 +69,9 @@ http://localhost:3000.)*
   status changes reflect an actual decision rather than anyone clicking a dropdown). Fine for a
   quiet pilot with a handful of trusted people; add auth (e.g. SSO via Microsoft Entra/Google
   Workspace) before sharing the link more widely.
-- **App icon is a placeholder SVG** (`public/icons/icon.svg`) — swap in your real logo as PNG
-  files (192×192 and 512×512 at minimum) for the best install experience on iOS.
+- **App icon** (`public/icons/icon-192.png` / `icon-512.png`) is a center-cropped square of the
+  brand photo (`scripts/crop-logo-photo.ps1` generated it from `Downloads\Image (1).jpg`) — swap
+  in a dedicated square logo file the same way if one becomes available later.
 - **Document/tool data lives in JSON files** on the server (`server/data/`), and on the free
   hosting tier that disk doesn't persist across redeploys — see [DEPLOY.md](DEPLOY.md) for why
   and how to fix it before relying on it.

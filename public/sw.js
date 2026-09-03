@@ -5,7 +5,7 @@
 // internal app, so a visit while online should always show the latest
 // version; the cache is purely an offline fallback, not the primary source.
 
-const CACHE = "viscoloop-shell-v2";
+const CACHE = "viscoloop-shell-v3";
 const SHELL_FILES = [
   "/",
   "/index.html",
@@ -14,7 +14,8 @@ const SHELL_FILES = [
   "/js/api.js",
   "/js/chat.js",
   "/manifest.webmanifest",
-  "/icons/icon.svg",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png",
 ];
 
 self.addEventListener("install", (event) => {
