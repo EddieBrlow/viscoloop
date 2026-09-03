@@ -1,17 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Recreated "VISCO" shield emblem: black background, orange shield outline + wordmark.
-       Swap this file for the real brand logo asset whenever it's available as a clean file. -->
+  <!-- Recreated "VISCO" shield emblem (from the reference photo's badge), redrawn as clean
+       vectors: black background, orange shield outline + wordmark. If a clean transparent-
+       background export of the original logo becomes available, swap it in here instead for a
+       pixel-exact match — the source photo has the mark blended into a busy background, so it
+       can't be lifted out cleanly. -->
   <rect width="512" height="512" rx="96" fill="#0A0A0B"/>
 
-  <!-- Double-line shield/banner outline, matching the reference badge shape -->
-  <path d="M 128 140 L 384 140 L 384 320 L 256 424 L 128 320 Z"
+  <!-- Top hanger bracket accent -->
+  <path d="M 176 96 L 176 122 M 176 96 L 336 96 M 336 96 L 336 122"
+        fill="none" stroke="#F97316" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 192 108 L 192 128 M 192 108 L 320 108 M 320 108 L 320 128"
+        fill="none" stroke="#F97316" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Double-line shield/banner outline -->
+  <path d="M 128 150 L 384 150 L 384 320 L 256 424 L 128 320 Z"
         fill="none" stroke="#F97316" stroke-width="9" stroke-linejoin="round"/>
-  <path d="M 146 158 L 366 158 L 366 306 L 256 400 L 146 306 Z"
+  <path d="M 146 168 L 366 168 L 366 306 L 256 400 L 146 306 Z"
         fill="none" stroke="#F97316" stroke-width="5" stroke-linejoin="round"/>
 
-  <text x="256" y="252" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
-        font-weight="900" font-size="92" letter-spacing="-2" fill="#F97316"
+  <text x="256" y="260" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-weight="900" font-size="88" letter-spacing="-2" fill="#F97316"
         textLength="212" lengthAdjust="spacingAndGlyphs">VISCO</text>
 
-  <line x1="196" y1="282" x2="316" y2="282" stroke="#F97316" stroke-width="4" stroke-dasharray="3 6" stroke-linecap="round"/>
+  <line x1="196" y1="288" x2="316" y2="288" stroke="#F97316" stroke-width="4" stroke-dasharray="3 6" stroke-linecap="round"/>
 </svg>
