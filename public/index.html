@@ -50,6 +50,16 @@
           <p class="motto"><strong>Teamwork</strong> - Build and win TOGETHER<br><strong>Innovation</strong> - Bring creative and simple solutions<br><strong>Action</strong> - Bring the Energy</p>
           <p class="hero-sub">Everything the team needs, in one place — find a document, open a tool, or share an idea on how we can do things better.</p>
         </div>
+
+        <div class="ask-viscoman">
+          <h2 class="section-title">🦸 Ask Viscoman</h2>
+          <form class="viscoman-search" id="viscoman-form">
+            <input type="text" id="viscoman-input" placeholder="Ask about a company policy or document…" autocomplete="off" />
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+          <div id="viscoman-result"></div>
+        </div>
+
         <div class="grid">
           <div class="tile">
             <div class="tile-icon">📄</div>
@@ -87,12 +97,6 @@
             <div class="title">Suggestions</div>
             <div class="desc">Submit an idea and track it through review to implementation.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="suggestions">Browse</button>
-          </div>
-          <div class="tile">
-            <div class="tile-icon">💬</div>
-            <div class="title">Ask ViscoLoop</div>
-            <div class="desc">Ask a policy or document question, get a grounded answer.</div>
-            <button class="btn btn-secondary btn-block go-to" data-view="chat">Ask now</button>
           </div>
         </div>
       </section>
@@ -172,22 +176,10 @@
         <div class="kanban-board" id="suggestions-board"></div>
       </section>
 
-      <!-- CHAT -->
-      <section class="view" id="view-chat">
-        <button class="back-link go-to" data-view="home">← Back to portal</button>
-        <h2 class="section-title">Ask ViscoLoop</h2>
-        <div class="chat-window">
-          <div class="chat-messages" id="chat-messages">
-            <div class="msg bot">Hi! Ask me about a company policy or where to find a document — I'll answer from what's in the Documents &amp; knowledge base.</div>
-          </div>
-          <form class="chat-input" id="chat-form">
-            <input type="text" id="chat-input" placeholder="e.g. How many remote days am I allowed?" autocomplete="off" />
-            <button class="btn btn-primary" type="submit">Send</button>
-          </form>
-        </div>
-      </section>
     </main>
   </div>
+
+  <div class="viscoman-icon" id="viscoman-flyer" aria-hidden="true">🦸</div>
 
   <!-- Add Document modal -->
   <div class="modal-backdrop" id="document-modal" style="display:none">

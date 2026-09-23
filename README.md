@@ -18,8 +18,8 @@ build of this same app) and scales better as sections are added.
 
 ```
 public/            The app itself (plain HTML/CSS/JS — no build step)
-  index.html        Home hub + Documents / Company Tools / Team Directory / HR /
-                     Work Guides / Suggestions / Ask ViscoLoop sections
+  index.html        Home hub (with the "Ask Viscoman" search bar) + Documents /
+                     Company Tools / Team Directory / HR / Work Guides / Suggestions
   manifest.webmanifest, sw.js   PWA install + offline shell caching
 server/            Backend: serves public/ and provides the APIs
   src/routes/documents.js    Document hub (links + file uploads)
@@ -43,9 +43,9 @@ use it through a live HTTPS URL from any browser, on any device.
 👉 See **[DEPLOY.md](DEPLOY.md)** for the full walkthrough (GitHub + Render, ~10 minutes).
 
 Once deployed, open the live URL and paste an Anthropic API key (from
-https://console.anthropic.com/) into the service's environment variables so the "Ask ViscoLoop"
-bot can answer for real. Without a key, the bot still runs but replies that it isn't configured
-yet.
+https://console.anthropic.com/) into the service's environment variables so the "Ask Viscoman"
+search bar on the Home page can answer for real. Without a key, it still runs but replies that
+it isn't configured yet.
 
 *(If you later get Node installed some other way, local dev still works the usual way: `cd
 server && npm install && copy .env.example .env && npm start`, then open
@@ -69,9 +69,9 @@ http://localhost:3000.)*
   **Deferred** / **Closed**). Comments are open to everyone; changing status, editing the action
   plan (owner/target date/steps), or deleting a suggestion requires **unlocking leadership
   controls** via the button in the header — see below.
-- **Ask ViscoLoop bot**: replace the placeholder files in `server/knowledge/` with your real
-  policy documents (plain `.md` or `.txt`). The bot only answers from what's in that folder —
-  add as many files as you like, one policy per file works well.
+- **Ask Viscoman**: the search bar on the Home page. Replace the placeholder files in
+  `server/knowledge/` with your real policy documents (plain `.md` or `.txt`). It only answers
+  from what's in that folder — add as many files as you like, one policy per file works well.
 
 ## Leadership passcode (optional)
 
