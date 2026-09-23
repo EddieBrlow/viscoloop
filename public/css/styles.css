@@ -1,11 +1,12 @@
-/* ViscoLoop brand palette: white page, black tiles, orange borders */
+/* ViscoLoop brand palette: dark by default, with a light mode toggle
+   (see [data-theme="light"] below). --primary stays orange in both modes. */
 :root {
-  --bg: #ffffff;
-  --surface: #0a0a0a;
-  --surface-2: #1a1a1a;
-  --text: #14162b;
-  --text-muted: #5b5f7a;
-  --border: #fa792e;
+  --bg: #0a0a0a;
+  --surface: #121212;
+  --surface-2: #1f1f1f;
+  --text: #fafafa;
+  --text-muted: #a3a3a3;
+  --border: #262626;
   --primary: #fa792e;
   --primary-ink: #121212;
   --primary-tint: rgba(250, 121, 46, 0.1);
@@ -15,20 +16,25 @@
   --radius: 12px;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.45);
+  --topbar-bg: rgba(10, 10, 10, 0.85);
   --font-sans: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
   --font-display: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif;
 }
 
-* { box-sizing: border-box; }
-
-/* Every black surface re-declares --text/--text-muted as light, so anything
-   nested inside (titles, descriptions, labels, badges) reads correctly
-   against black, while the page itself stays dark-on-white by default. */
-.topbar, .tile, .hero-badge, .card, .stat-card, .kanban-column, .kanban-card,
-.modal, .loop-step, .comment, .install-banner, .hint, .msg.bot, .chat-window, .chip {
-  --text: #fafafa;
-  --text-muted: #a3a3a3;
+:root[data-theme="light"] {
+  --bg: #f7f7f8;
+  --surface: #ffffff;
+  --surface-2: #f0f0f2;
+  --text: #14161a;
+  --text-muted: #6b6f76;
+  --border: #e4e4e7;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.1);
+  --topbar-bg: rgba(247, 247, 248, 0.85);
 }
+:root[data-theme="light"] .tag-urgent { background: rgba(239, 68, 68, 0.1); color: #b91c1c; }
+
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -51,7 +57,7 @@ html, body {
   gap: 10px;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border);
-  background: rgba(10, 10, 10, 0.85);
+  background: var(--topbar-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: sticky;
@@ -179,7 +185,7 @@ h2.section-title {
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
 .tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.tile.featured { border-color: var(--primary); border-width: 2px; }
+.tile.featured { background: var(--primary-wash); border-color: var(--primary-tint-strong); }
 
 .tile-icon {
   width: 44px;
@@ -274,8 +280,8 @@ h2.section-title {
   padding: 9px 10px;
   border-radius: 8px;
   border: 1px solid var(--border);
-  background: #ffffff;
-  color: #14162b;
+  background: var(--bg);
+  color: var(--text);
   font-size: 14px;
 }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
@@ -314,8 +320,8 @@ h2.section-title {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #ffffff;
-  color: #14162b;
+  background: var(--bg);
+  color: var(--text);
   font-size: 14px;
 }
 

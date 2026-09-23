@@ -1,3 +1,23 @@
+// --- Theme (light/dark) -------------------------------------------------
+function applyTheme(theme) {
+  if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
+  else document.documentElement.removeAttribute("data-theme");
+  document.getElementById("theme-toggle").textContent = theme === "light" ? "☀️" : "🌙";
+}
+
+(function initTheme() {
+  let saved = "dark";
+  try { saved = localStorage.getItem("viscoloop-theme") || "dark"; } catch {}
+  applyTheme(saved);
+})();
+
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  const next = isLight ? "dark" : "light";
+  applyTheme(next);
+  try { localStorage.setItem("viscoloop-theme", next); } catch {}
+});
+
 // --- Navigation -------------------------------------------------------
 function showView(view) {
   document.querySelectorAll(".view").forEach((el) => el.classList.toggle("active", el.id === `view-${view}`));

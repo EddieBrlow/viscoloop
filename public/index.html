@@ -16,6 +16,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="/css/styles.css" />
+  <script>
+    // Applied before first paint to avoid a flash of the wrong theme.
+    try {
+      var t = localStorage.getItem("viscoloop-theme");
+      if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <div id="app">
@@ -26,6 +33,7 @@
       <div class="topbar-actions">
         <button class="pill-btn go-to" data-view="home">🏠 Portal</button>
         <button class="pill-btn" id="leadership-toggle">🔒 Leadership</button>
+        <button class="pill-btn" id="theme-toggle">🌙</button>
       </div>
     </header>
 
