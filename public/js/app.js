@@ -270,11 +270,18 @@ let leadershipOpenMode = false;
 function updateLeadershipButton() {
   const btn = document.getElementById("leadership-toggle");
   btn.textContent = leadershipUnlocked ? "🔓 Leadership" : "🔒 Leadership";
+  btn.title = leadershipUnlocked ? "Click to lock leadership controls again" : "Click to unlock leadership controls";
   btn.classList.toggle("active", leadershipUnlocked);
 }
 
 document.getElementById("leadership-toggle").addEventListener("click", () => {
-  if (leadershipUnlocked) return; // no need to lock back for this small pilot
+  if (leadershipUnlocked) {
+    leadershipUnlocked = false;
+    sessionStorage.removeItem("viscoloop-leadership-passcode");
+    updateLeadershipButton();
+    renderSuggestionsBoard();
+    return;
+  }
   openModal("leadership-modal");
 });
 
