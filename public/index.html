@@ -20,18 +20,14 @@
 <body>
   <div id="app">
     <header class="topbar">
-      <img src="/icons/icon-192.png" alt="" />
-      <h1>ViscoLoop</h1>
+      <img src="/icons/icon-192.png" alt="" class="go-to" data-view="home" />
+      <h1 class="go-to" data-view="home">ViscoLoop</h1>
       <span class="tagline">Teamwork shapes the vision, innovation drives the design, action builds the reality.</span>
+      <div class="topbar-actions">
+        <button class="pill-btn go-to" data-view="home">🏠 Portal</button>
+        <button class="pill-btn" id="leadership-toggle">🔒 Leadership</button>
+      </div>
     </header>
-
-    <nav class="tabs" id="tabs">
-      <button data-view="home" class="active">🏠 Home</button>
-      <button data-view="documents">📄 Documents</button>
-      <button data-view="tools">🧰 Company Tools</button>
-      <button data-view="suggestions">💡 Suggestions</button>
-      <button data-view="chat">💬 Ask ViscoLoop</button>
-    </nav>
 
     <main>
       <div class="install-banner" id="install-banner">
@@ -59,6 +55,24 @@
             <div class="desc">Quick links to every third-party platform your team uses.</div>
             <button class="btn btn-secondary btn-block go-to" data-view="tools">Browse</button>
           </div>
+          <div class="tile">
+            <div class="tile-icon">👥</div>
+            <div class="title">Team Directory</div>
+            <div class="desc">Names, roles, phone numbers, and email for every teammate.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="team">Browse</button>
+          </div>
+          <div class="tile">
+            <div class="tile-icon">🧑‍💼</div>
+            <div class="title">Human Resources</div>
+            <div class="desc">Benefits, payroll, time off, onboarding, and more.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="hr">Browse</button>
+          </div>
+          <div class="tile">
+            <div class="tile-icon">📋</div>
+            <div class="title">Work Guides</div>
+            <div class="desc">Field procedures, checklists, and how-to guides.</div>
+            <button class="btn btn-secondary btn-block go-to" data-view="workguides">Browse</button>
+          </div>
           <div class="tile featured" id="home-suggestions-tile">
             <span class="tile-badge" id="home-suggestions-count" hidden></span>
             <div class="tile-icon">💡</div>
@@ -77,6 +91,7 @@
 
       <!-- DOCUMENTS -->
       <section class="view" id="view-documents">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
         <div class="row-between">
           <h2 class="section-title">Documents</h2>
           <button class="btn btn-primary" id="add-document-btn">+ Add document</button>
@@ -88,6 +103,7 @@
 
       <!-- TOOLS -->
       <section class="view" id="view-tools">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
         <div class="row-between">
           <h2 class="section-title">Company Tools</h2>
           <button class="btn btn-primary" id="add-tool-btn">+ Add tool</button>
@@ -95,19 +111,62 @@
         <div class="grid" id="tools-grid"></div>
       </section>
 
+      <!-- TEAM DIRECTORY -->
+      <section class="view" id="view-team">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
+        <div class="row-between">
+          <h2 class="section-title">Team Directory</h2>
+          <button class="btn btn-primary" id="add-person-btn">+ Add person</button>
+        </div>
+        <div class="grid" id="team-grid"></div>
+      </section>
+
+      <!-- HR -->
+      <section class="view" id="view-hr">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
+        <div class="row-between">
+          <h2 class="section-title">Human Resources</h2>
+          <button class="btn btn-primary" id="add-hr-btn">+ Add resource</button>
+        </div>
+        <div class="grid" id="hr-grid"></div>
+      </section>
+
+      <!-- WORK GUIDES -->
+      <section class="view" id="view-workguides">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
+        <div class="row-between">
+          <h2 class="section-title">Work Guides</h2>
+          <button class="btn btn-primary" id="add-workguide-btn">+ Add guide</button>
+        </div>
+        <div class="grid" id="workguides-grid"></div>
+      </section>
+
       <!-- SUGGESTIONS -->
       <section class="view" id="view-suggestions">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
         <div class="row-between">
           <h2 class="section-title">Suggestions</h2>
           <button class="btn btn-primary" id="add-suggestion-btn">+ Submit suggestion</button>
         </div>
         <div class="stats-row" id="suggestion-stats"></div>
-        <div class="chips" id="suggestion-statuses"></div>
-        <div class="grid" id="suggestions-grid" style="margin-top:14px"></div>
+
+        <div class="loop-explainer">
+          <h3>How the loop works</h3>
+          <p class="hero-sub">Every submission travels the same path — nothing disappears into a suggestion box.</p>
+          <div class="loop-steps">
+            <div class="loop-step"><div class="loop-step-num">1</div><div class="loop-step-title">Submit</div><div class="desc">Any team member submits an idea — no login needed.</div></div>
+            <div class="loop-step"><div class="loop-step-num">2</div><div class="loop-step-title">Review</div><div class="desc">Leadership acknowledges every submission and decides what to advance.</div></div>
+            <div class="loop-step"><div class="loop-step-num">3</div><div class="loop-step-title">Plan</div><div class="desc">An owner, target date, and action steps turn the idea into a real plan.</div></div>
+            <div class="loop-step"><div class="loop-step-num">4</div><div class="loop-step-title">Implement</div><div class="desc">The improvement is piloted, rolled out, and the outcome recorded.</div></div>
+          </div>
+        </div>
+
+        <div class="kanban-board" id="suggestions-board"></div>
       </section>
 
       <!-- CHAT -->
       <section class="view" id="view-chat">
+        <button class="back-link go-to" data-view="home">← Back to portal</button>
         <h2 class="section-title">Ask ViscoLoop</h2>
         <div class="chat-window">
           <div class="chat-messages" id="chat-messages">
@@ -195,6 +254,60 @@
     </div>
   </div>
 
+  <!-- Add Person modal -->
+  <div class="modal-backdrop" id="person-modal" style="display:none">
+    <div class="modal">
+      <h3>Add a team member</h3>
+      <form id="person-form">
+        <div class="field"><label>Name</label><input type="text" name="name" required /></div>
+        <div class="field"><label>Role</label><input type="text" name="role" placeholder="e.g. Site Superintendent" /></div>
+        <div class="field"><label>Department</label><input type="text" name="department" placeholder="e.g. Field, Office, PM" /></div>
+        <div class="field"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 555-5555" /></div>
+        <div class="field"><label>Email</label><input type="email" name="email" placeholder="name@buildvisco.com" /></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add HR resource modal -->
+  <div class="modal-backdrop" id="hr-modal" style="display:none">
+    <div class="modal">
+      <h3>Add an HR resource</h3>
+      <form id="hr-form">
+        <div class="field"><label>Title</label><input type="text" name="title" required /></div>
+        <div class="field"><label>URL</label><input type="url" name="url" placeholder="https://onedrive.live.com/..." required /></div>
+        <div class="field"><label>Category</label><input type="text" name="category" placeholder="e.g. Benefits, Payroll, Onboarding" /></div>
+        <div class="field"><label>Icon (single emoji)</label><input type="text" name="icon" placeholder="🧑‍💼" maxlength="2" /></div>
+        <div class="field"><label>Description</label><textarea name="description" rows="2"></textarea></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Work Guide modal -->
+  <div class="modal-backdrop" id="workguide-modal" style="display:none">
+    <div class="modal">
+      <h3>Add a work guide</h3>
+      <form id="workguide-form">
+        <div class="field"><label>Title</label><input type="text" name="title" required /></div>
+        <div class="field"><label>URL</label><input type="url" name="url" placeholder="https://onedrive.live.com/..." required /></div>
+        <div class="field"><label>Category</label><input type="text" name="category" placeholder="e.g. Safety, Equipment, Logistics" /></div>
+        <div class="field"><label>Icon (single emoji)</label><input type="text" name="icon" placeholder="📋" maxlength="2" /></div>
+        <div class="field"><label>Description</label><textarea name="description" rows="2"></textarea></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Submit Suggestion modal -->
   <div class="modal-backdrop" id="suggestion-modal" style="display:none">
     <div class="modal">
@@ -202,25 +315,63 @@
       <form id="suggestion-form">
         <div class="field">
           <label>Title</label>
-          <input type="text" name="title" required />
-        </div>
-        <div class="field">
-          <label>Details</label>
-          <textarea name="description" rows="3" placeholder="What's the idea, and why would it help?"></textarea>
+          <input type="text" name="title" required placeholder="e.g. Pre-stage materials for second-floor framing" />
         </div>
         <div class="field">
           <label>Category</label>
-          <input type="text" name="category" placeholder="e.g. Product, Process, IT" />
+          <select name="category" id="suggestion-category"></select>
+        </div>
+        <div class="field">
+          <label>Urgency</label>
+          <select name="urgency" id="suggestion-urgency"></select>
+        </div>
+        <div class="field">
+          <label>What's the problem?</label>
+          <textarea name="problem" rows="2" placeholder="Describe the issue, bottleneck, or risk you've noticed."></textarea>
+        </div>
+        <div class="field">
+          <label>Your proposed solution</label>
+          <textarea name="solution" rows="2" placeholder="How would you fix or improve it?"></textarea>
+        </div>
+        <div class="field">
+          <label>Expected benefit</label>
+          <input type="text" name="benefit" placeholder="e.g. Saves ~4 hours per unit, reduces rework" />
         </div>
         <div class="field">
           <label>Your name (optional)</label>
-          <input type="text" name="submittedBy" placeholder="Leave blank to submit anonymously" />
+          <input type="text" name="submittedBy" placeholder="Anonymous is fine" />
+        </div>
+        <div class="field">
+          <label>Role / crew (optional)</label>
+          <input type="text" name="role" placeholder="e.g. Field crew, PM, office" />
         </div>
         <div class="modal-actions">
           <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Leadership unlock modal -->
+  <div class="modal-backdrop" id="leadership-modal" style="display:none">
+    <div class="modal">
+      <h3>Unlock leadership controls</h3>
+      <p class="hero-sub" style="margin-bottom:14px">Needed to move a suggestion's status, edit its action plan, or delete it. Comments stay open to everyone either way.</p>
+      <form id="leadership-form">
+        <div class="field"><label>Passcode</label><input type="password" name="passcode" autocomplete="off" /></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Unlock</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Suggestion detail modal -->
+  <div class="modal-backdrop" id="suggestion-detail-modal" style="display:none">
+    <div class="modal modal-lg">
+      <div id="suggestion-detail-content"></div>
     </div>
   </div>
 

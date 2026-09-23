@@ -1,0 +1,29 @@
+[
+  {
+    "id": "seed-wg-1",
+    "title": "Jobsite Safety Checklist",
+    "category": "Safety",
+    "description": "Daily walk-through checklist before crews start work.",
+    "url": "https://onedrive.live.com/",
+    "icon": "🦺",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-wg-2",
+    "title": "Equipment Pre-Use Inspection",
+    "category": "Equipment",
+    "description": "Standard inspection steps before operating heavy machinery.",
+    "url": "https://onedrive.live.com/",
+    "icon": "🚜",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-wg-3",
+    "title": "Material Ordering Procedure",
+    "category": "Logistics",
+    "description": "How to request and track material orders for a job.",
+    "url": "https://onedrive.live.com/",
+    "icon": "📦",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  }
+]

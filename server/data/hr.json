@@ -1,0 +1,29 @@
+[
+  {
+    "id": "seed-hr-1",
+    "title": "Benefits Overview",
+    "category": "Benefits",
+    "description": "Health, dental, vision, and retirement plan details. (Example OneDrive link — replace with your real one.)",
+    "url": "https://onedrive.live.com/",
+    "icon": "🩺",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-hr-2",
+    "title": "Time Off Requests",
+    "category": "Time Off",
+    "description": "How to request PTO and check your remaining balance.",
+    "url": "https://onedrive.live.com/",
+    "icon": "🌴",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  },
+  {
+    "id": "seed-hr-3",
+    "title": "New Hire Onboarding",
+    "category": "Onboarding",
+    "description": "First-week checklist and paperwork for new team members.",
+    "url": "https://onedrive.live.com/",
+    "icon": "🧑‍💼",
+    "updatedAt": "2026-01-10T09:00:00.000Z"
+  }
+]
