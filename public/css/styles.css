@@ -197,9 +197,9 @@ h2.section-title {
 }
 
 .tile .icon { font-size: 26px; }
-.tile .title { font-weight: 700; font-size: 15px; }
-.tile .desc { color: var(--text-muted); font-size: 13px; flex: 1; }
-.tile .meta { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+.tile .title { font-weight: 700; font-size: 18px; }
+.tile .desc { color: var(--text-muted); font-size: 15px; line-height: 1.4; flex: 1; }
+.tile .meta { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 .tile-actions { display: flex; gap: 8px; margin-top: 8px; }
 
 .btn {
