@@ -15,7 +15,6 @@ const SHELL_FILES = [
   "/js/chat.js",
   "/manifest.webmanifest",
   "/icons/icon-192.png",
-  "/icons/viscoman.svg",
   "/icons/icon-512.png",
 ];
 

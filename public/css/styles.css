@@ -289,8 +289,7 @@ h2.section-title {
 
 /* Ask Viscoman search bar (Home page) */
 .ask-viscoman { margin-bottom: 28px; }
-.ask-viscoman .section-title { margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.viscoman-heading-icon { width: 42px; height: auto; }
+.ask-viscoman .section-title { margin-bottom: 12px; }
 .viscoman-search { display: flex; gap: 10px; }
 .viscoman-search input {
   flex: 1;
@@ -322,8 +321,7 @@ h2.section-title {
   position: fixed;
   top: 20%;
   left: -60px;
-  width: 68px;
-  height: auto;
+  font-size: 38px;
   z-index: 200;
   pointer-events: none;
   opacity: 0;
