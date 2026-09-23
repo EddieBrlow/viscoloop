@@ -81,6 +81,34 @@ variables (same place as `ANTHROPIC_API_KEY`) and restart. Employees then need t
 change a suggestion's status, edit its action plan, or delete it — submitting ideas and adding
 comments stay open to everyone either way.
 
+## Data persistence (strongly recommended)
+
+By default, all data (Documents, Company Tools, Team Directory, HR, Work Guides, Suggestions)
+lives in JSON files on the server's disk — and on Render's free tier, that disk gets wiped on
+every redeploy. Since this app ships changes often, that's a real risk once people start adding
+real content.
+
+Fix it with a free [Upstash](https://upstash.com/) Redis database (their free tier is genuinely
+persistent — no auto-pause or expiry like some other free-tier databases):
+
+1. Sign up at [upstash.com](https://upstash.com/) (free) → **Create Database** → Redis, any
+   region close to your Render service.
+2. On the database's page, copy the **REST URL** and **REST Token** (not the Redis connection
+   string — the REST API credentials).
+3. In Render → the viscoloop service → **Environment**, add:
+   - `UPSTASH_REDIS_REST_URL`
+   - `UPSTASH_REDIS_REST_TOKEN`
+4. Save (Render restarts automatically) — that's it. `server/src/lib/store.js` switches to Redis
+   automatically once both are set; no other code changes needed, since every route already goes
+   through that same store.
+
+The first time each section (Documents, Tools, etc.) is read after switching over, whatever
+placeholder/seed content was in its local JSON file gets copied into Redis once, so nothing
+appears to suddenly go empty. From then on, Redis is the source of truth and survives redeploys.
+
+Without these two variables set, the app keeps working exactly as before (local JSON files) —
+this is an opt-in upgrade, not a breaking change.
+
 ## Known v1 limitations (worth knowing before wider rollout)
 
 - **No real authentication** — the leadership passcode (if set) is a single shared secret, not
@@ -91,9 +119,8 @@ comments stay open to everyone either way.
 - **App icon** (`public/icons/icon-192.png` / `icon-512.png`) is a center-cropped square of the
   brand photo (`scripts/crop-logo-photo.ps1` generated it from `Downloads\Image (1).jpg`) — swap
   in a dedicated square logo file the same way if one becomes available later.
-- **All data lives in JSON files** on the server (`server/data/`), and on the free hosting tier
-  that disk doesn't persist across redeploys — see [DEPLOY.md](DEPLOY.md) for why and how to fix
-  it before relying on it.
+- **Data only persists across redeploys if Upstash Redis is configured** — see "Data persistence"
+  above. Without it, everything still works, it just resets on every Render redeploy.
 - **Retrieval for the bot is simple keyword matching**, not semantic search — works well for a
   modest number of policy docs; revisit if the knowledge base grows large.
 

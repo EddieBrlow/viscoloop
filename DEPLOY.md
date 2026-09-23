@@ -42,19 +42,17 @@ default so install works everywhere (not just localhost).
 
 ## Important: data persistence on the free tier
 
-`server/data/*.json` (Company Tools, Documents metadata) lives on disk. On Render's **free**
-tier, that disk is wiped on every redeploy/restart — fine for kicking the tires, not fine for
-real content people rely on.
+`server/data/*.json` (Documents, Company Tools, Team Directory, HR, Work Guides, Suggestions
+metadata) lives on disk by default. On Render's **free** tier, that disk is wiped on every
+redeploy/restart — fine for kicking the tires, not fine for real content people rely on.
 
-Before rolling this out for real, do one of:
-- Upgrade to a paid Render instance and attach a **persistent Disk** mounted at `/data`, then
-  point `server/src/lib/store.js` paths at it (I can wire this up when you're ready), **or**
-- Move `documents.json`/`tools.json` into a small real database (e.g. Render's free Postgres,
-  or Supabase) — a bigger but more durable change.
+**Fixed** — see [README.md "Data persistence"](README.md#data-persistence-strongly-recommended)
+for how to point the app at a free, persistent Upstash Redis database instead. It's a two
+environment-variable change, no code edits needed.
 
-Since Documents now mostly link out to OneDrive rather than storing files here, the only data
-actually at risk on redeploy is the **list of links/tools themselves** — worth fixing before
-more than a couple of people start relying on it, but not urgent for a first look.
+Since Documents now mostly link out to OneDrive rather than storing files here, uploaded *files*
+still don't persist on the free tier either way (that would need real object storage, e.g.
+Cloudflare R2) — but the metadata/links themselves are covered once Upstash is configured.
 
 ## Updating the live app later
 
